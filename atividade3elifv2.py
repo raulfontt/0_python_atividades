@@ -3,11 +3,10 @@ ingresso = input("\nPossui ingresso?(sim/nao) ")
 autorizacao = input("\nPossui autorizacao?(sim/nao) ")
 lista_vip = input("\nPossui lista vip?(sim/nao) ")
 
-
-if idade < 18 and (lista_vip == "sim" or ingresso == "sim") and autorizacao == "sim":
-    print("\nEntrada de menor permitida devido a autorização dos pais e ingresso ou vip")
-elif idade < 12:
+if idade < 12:
     print("\nNão pode entrar de jeito nenhum.")
+elif idade < 18 and (lista_vip == "sim" or ingresso == "sim") and autorizacao == "sim":
+    print("\nEntrada de menor permitida devido a autorização dos pais e ingresso ou vip")
 elif idade >= 18 and (ingresso == "sim" or lista_vip == "sim"):
     print("\nEntrada permitida!")
 else:
