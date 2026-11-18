@@ -13,7 +13,7 @@ elif idade >= 18 and (ingresso == "sim" or lista_vip == "sim"):
 else:
     print("\nEntrada Negada!")
 
-  """  Vamos criar um sistema de controle de entrada para um evento! As Regras são:
+"""  Vamos criar um sistema de controle de entrada para um evento! As Regras são:
 A entrada é permitida se a pessoa tem idade maior ou igual a 18 anos e tem ingresso.
 Se a pessoa tem menos de 18 anos, só pode entrar com autorização dos pais e ingresso.
 Pessoas com idade menor que 12 anos não podem entrar de jeito nenhum"""
