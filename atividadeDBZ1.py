@@ -1,42 +1,50 @@
-#Descreva o programa
-"""Programa para simular a busca por esferas do dragão."""
+# Descreva o programa
+"""Programa para simular a busca por esferas do dragão.
+O guerreiro informa seu nome, suas esferas e seu ki.
+O programa calcula o custo da busca e verifica o resultado.
+"""
 
+# Dados do guerreiro
 nome = input("Digite o nome do guerreiro: ")
 esferas_encontradas = int(input("Quantas esferas você já encontrou? "))
 ki = float(input("Quanto ki você tem? "))
-radar = input("Você está com o Radar do Dragão? (sim/nao): ")  
+radar = input("Você está com o Radar do Dragão? (sim/nao): ")
 
-#Simulação da busca por mais esferas
-esferas_faltantes = 7 - esferas_encontradas 
+# Simulação da busca por mais esferas
+esferas_faltantes = 7 - esferas_encontradas
 
-#Cálculo do gasto de ki
-gasto_ki = sum((i + 1) * 1000 for i in range(esferas_faltantes))    
+# Cálculo do gasto de ki
+gasto_ki = (esferas_faltantes * (esferas_faltantes + 1)) / 2 * 1000
 
-#Redução do gasto de ki se tiver o Radar do Dragão
-if radar.lower() == "sim":
-    gasto_ki /= 2
+# Redução do gasto com o Radar do Dragão
+if radar == "sim":
+    gasto_ki = gasto_ki / 2
 
-#Atualização do ki restante
-ki_restante = ki - gasto_ki
-
-#Decisão do destino da busca
-if esferas_encontradas + esferas_faltantes == 7:
-    print("\nShenlong é invocado!") 
-
-elif esferas_encontradas + esferas_faltantes >= 4:
-    print("\nA busca continua!")    
-
+# Verifica se o guerreiro tem ki suficiente
+if ki >= gasto_ki:
+    ki -= gasto_ki
+    esferas_encontradas += esferas_faltantes
 else:
-    print("\nO guerreiro perdeu as esferas no meio do caminho, precisa recomeçar.")
+    print("Ki insuficiente! Você não conseguiu encontrar todas as esferas.")
 
-#Verificação do ki restante
-if ki_restante > 0:
-    print("\nO guerreiro ainda tem energia.")
+# Verifica o destino da busca
+if esferas_encontradas == 7:
+    print("Shenlong foi invocado!")
+elif esferas_encontradas >= 4 and esferas_encontradas < 7:
+    print("A busca continua!")
 else:
-    print("\nO guerreiro ficou exausto.")
+    print("Você perdeu as esferas e precisa recomeçar.")
 
-#Relatório final
-print(f"\nRelatório Final:\nGuerreiro: {nome}\nTotal de esferas: {esferas_encontradas + esferas_faltantes}\nKi restante: {ki_restante:.2f}")
+# Verifica o ki restante
+if ki != 0:
+    print("Você ainda tem energia!")
+else:
+    print("Você ficou exausto!")
+
+# Relatório final
+print(f"\nRelatório final do guerreiro {nome}:")
+print(f"Total de esferas: {esferas_encontradas}")
+print(f"Ki restante: {ki}")
 
 
 
