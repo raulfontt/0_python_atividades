@@ -9,34 +9,32 @@ radar = input("Você está com o Radar do Dragão? (sim/nao): ")
 #Simulação da busca por mais esferas
 esferas_faltantes = 7 - esferas_encontradas 
 
-#Cálculo do gasto de ki
-gasto_ki = sum((i + 1) * 1000 for i in range(esferas_faltantes))    
+# Cálculo do gasto de ki
+# Utilizei o conceito da Soma na matemática de números em sequência (n x (n + 1))/2 
+# Multiplico por 1000 pois é uma sequência: a 1a custa 1000, a 2a custa 2000 e a 3a custa 3000
+gasto_ki = (esferas_faltantes * (esferas_faltantes + 1)) / 2 * 1000
+print(f"Você terá {gasto_ki} de Ki gasto para encontrar as {esferas_faltantes} esferas faltantes")
 
-#Redução do gasto de ki se tiver o Radar do Dragão
-if radar.lower() == "sim":
-    gasto_ki /= 2
-
-#Atualização do ki restante
-ki_restante = ki - gasto_ki
-
-#Decisão do destino da busca
-if esferas_encontradas + esferas_faltantes == 7:
-    print("\nShenlong é invocado!") 
-
-elif esferas_encontradas + esferas_faltantes >= 4:
-    print("\nA busca continua!")    
-
+#Terá redução?
+if radar == "sim":
+    gasto_ki = gasto_ki/2
+    ki = ki - gasto_ki
+    print(f"Você tem o radar seu gasto será de {gasto_ki} e seu Ki final ficou: {ki}")
 else:
-    print("\nO guerreiro perdeu as esferas no meio do caminho, precisa recomeçar.")
+    ki = ki - gasto_ki
+    print(f"Você não tem o radar e seu ki final ficou: {ki}")
 
-#Verificação do ki restante
-if ki_restante > 0:
-    print("\nO guerreiro ainda tem energia.")
+if gasto_ki > ki:
+    print("Você não tem ki suficiente")
 else:
-    print("\nO guerreiro ficou exausto.")
+    print("Você tem ki suficiente")
 
-#Relatório final
-print(f"\nRelatório Final:\nGuerreiro: {nome}\nTotal de esferas: {esferas_encontradas + esferas_faltantes}\nKi restante: {ki_restante:.2f}")
+#Quantas esferas ele possui agora?
+if esferas_encontradas == 7:
+    print("Você pode invocar shelong.")
+elif esferas_encontradas < 7:
+    print("A busca deve continuar.")
+
 
 
 
